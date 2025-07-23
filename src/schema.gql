@@ -20,10 +20,16 @@ input CreateBookDto {
   title: String!
 }
 
+input LoginDto {
+  email: String!
+  password: String!
+}
+
 type Mutation {
   UpdateBook(data: UpdateBookDto!): Book!
   createBook(data: CreateBookDto!): Book!
   deleteBook(id: String!): String!
+  login(data: LoginDto!): AuthResponse!
   signup(data: SignupDto!): AuthResponse!
 }
 
