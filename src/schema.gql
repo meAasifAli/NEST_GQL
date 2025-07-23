@@ -1,0 +1,55 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type AuthResponse {
+  token: String!
+  user: User!
+}
+
+type Book {
+  _id: ID!
+  author: User!
+  desc: String
+  title: String!
+}
+
+input CreateBookDto {
+  author: String
+  desc: String
+  title: String!
+}
+
+type Mutation {
+  UpdateBook(data: UpdateBookDto!): Book!
+  createBook(data: CreateBookDto!): Book!
+  deleteBook(id: String!): String!
+  signup(data: SignupDto!): AuthResponse!
+}
+
+type Query {
+  book(id: String!): Book!
+  books: [Book!]!
+}
+
+input SignupDto {
+  email: String!
+  name: String!
+  password: String!
+}
+
+input UpdateBookDto {
+  author: String
+  desc: String
+  id: ID!
+  title: String
+}
+
+type User {
+  _id: ID!
+  accessToken: String
+  books: [Book]
+  email: String!
+  name: String!
+  password: String!
+}

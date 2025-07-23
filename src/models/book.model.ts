@@ -1,0 +1,25 @@
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document, Types } from 'mongoose';
+import { ObjectType, Field, ID } from '@nestjs/graphql';
+import { User } from './user.model';
+
+@Schema()
+@ObjectType()
+export class Book extends Document {
+  @Field(() => ID)
+  declare readonly _id: string;
+
+  @Prop({ required: true })
+  @Field()
+  title: string;
+
+  @Prop({})
+  @Field({ nullable: true })
+  desc?: string;
+
+  @Prop({ type: Types.ObjectId, ref: 'User', required: true })
+  @Field(() => User)
+  author: Types.ObjectId;
+}
+
+export const BookSchema = SchemaFactory.createForClass(Book);
